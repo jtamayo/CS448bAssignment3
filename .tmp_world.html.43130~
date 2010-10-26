@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>The World</title>
+        <link type="text/css" rel="stylesheet" href="world.css"/>
+        <script type="text/javascript" src="protovis-d3.2.js">
+        </script>
+        <script type="text/javascript" src="countries.js">
+        </script>
+        <script type="text/javascript" src="map.js">
+        </script>
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div id="center">
+            <div id="map">
+                <script type="text/javascript">
+                    map();
+                </script>
+            </div>
+            <div id="line">
+                <script type="text/javascript">
+                    line();
+                </script>
+            </div>
+        </div>
+    </body>
+</html>
