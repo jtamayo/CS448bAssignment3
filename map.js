@@ -10,19 +10,19 @@ function map() {
 	 * Penn State.
 	 */
 	var fill = pv.Scale.linear()
-	    .domain(140, 650, 1900)
+	    .domain(0, 100)
 	    .range("#91bfdb", "#ffffbf", "#fc8d59");
 	
 	/* Precompute the country's population density and color. */
 	countries.forEach(function(c) {
 		var country = countryCodeMap.twoToThree[c.code]
-		var y = forest[country]
-		try {
-		c.color = fill(y[0].value);
-	
-} catch (e) {
-	console.log(country);	
-}
+        var y = forest[country]
+        try {
+            c.color = fill(y[0].value);
+        } 
+        catch (e) {
+            console.log(country);
+        }
 //	  c.color = stats[c.code].area
 //	      ? fill(stats[c.code].pop / stats[c.code].area)
 //	      : "#ccc"; // unknown
