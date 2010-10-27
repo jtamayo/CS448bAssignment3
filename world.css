@@ -1,10 +1,19 @@
 
 #map {
     width: 860px;
-    height: 550px;
+    height: 520px;
+    text-align: center;
 }
 
 #line {
-	width: 400px;
-	height: 400px;
+    width: 860px;
+    height: 200px;
+    text-align: center;
+}
+
+#yearSlider {
+    position: absolute;
+    left: 100px;
+    right: 90px;
+    margin-top: 3px;
 }

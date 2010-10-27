@@ -2,11 +2,22 @@
     <head>
         <title>The World</title>
         <link type="text/css" rel="stylesheet" href="world.css"/>
+        <link type="text/css" rel="stylesheet" href="ui-lightness/jquery-ui-1.8rc3.custom.css"/>
         <script type="text/javascript" src="protovis-d3.2.js">
         </script>
         <script type="text/javascript" src="countries.js">
         </script>
+        <script type="text/javascript" src="countryCodeMap.js">
+        </script>
         <script type="text/javascript" src="map.js">
+        </script>
+        <script type="text/javascript" src="forest.js">
+        </script>
+        <script type="text/javascript" src="protovis-r3.2.js">
+        </script>
+        <script type="text/javascript" src="jquery-1.4.2.min.js">
+        </script>
+        <script type="text/javascript" src="jquery-ui-1.8rc3.custom.min.js">
         </script>
     </head>
     <body>
@@ -21,6 +32,19 @@
                     line();
                 </script>
             </div>
+            <div id="yearSlider">
+            </div>
         </div>
+            <script type="application/javascript">
+                $(yearSlider).slider({
+                    min: 1990,//us_stats.minYear,
+                    max: 2010,//us_stats.maxYear,
+                    value: 2010,//us_stats.maxYear,
+                    slide: function(e, ui){
+                        //year = ui.value;
+                        //vis.render();
+                    }
+                });
+            </script>
     </body>
 </html>

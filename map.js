@@ -1,13 +1,16 @@
+var year = 2005;
+var startYear = 1990;
+var endYear = 2010;
+
 function line() {
-	var data = pv.range(0, 10, .1).map(function(x) {
-    return {x: x, y: Math.sin(x) + Math.random() * .5 + 2};
-  });
+//	var data = pv.range(1990, 2010, .1).map(function(x) {
+//    return {x: x, y: Math.sin(x) + Math.random() * .5 + 2};
+//  });
+  var data = afghanistan['AFG'];
 	
-	var w = 600,
-    h = 300,
-    x = pv.Scale.linear(data, function(d){
-		return d.x;
-	}).range(0, w),
+	var w = 860,
+    h = 180,
+    x = pv.Scale.linear(startYear, endYear).range(0, w),
     y = pv.Scale.linear(0, 4).range(0, h);
 
 /* The root panel. */
@@ -37,14 +40,12 @@ vis.add(pv.Rule)
   .anchor("bottom").add(pv.Label)
     .text(x.tickFormat);
 
-/* The area with top line. */
-vis.add(pv.Area)
+vis.add(pv.Line)
     .data(data)
-    .bottom(1)
-    .left(function(d) { return x(d.x);})
-    .height(function(d) { return y(d.y);})
-    .fillStyle("rgb(255,255,255)")
-  .anchor("top").add(pv.Line)
+    .left(function(d) { return x(d.year); 
+	})
+    .bottom(function(d) { return y(d.value);
+	})
     .lineWidth(3);
 
 vis.render();
@@ -63,15 +64,15 @@ function map() {
 	
 	/* Precompute the country's population density and color. */
 	countries.forEach(function(c) {
-		c.color = "#ccc";
+		c.color = fill(afghanistan[countryCodeMap.twoToThree[c.code]][1].value);
 //	  c.color = stats[c.code].area
 //	      ? fill(stats[c.code].pop / stats[c.code].area)
 //	      : "#ccc"; // unknown
 	});
 	
-	var w = 800,
+	var w = 860,
 	    h = 3 / 5 * w,
-	    geo = pv.Geo.scale("hammer").range(w, h);
+	    geo = pv.Geo.scale("identity").range(w, h);
 	
 	var vis = new pv.Panel()
 	    .width(w)
