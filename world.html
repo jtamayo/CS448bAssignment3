@@ -9,6 +9,8 @@
         </script>
         <script type="text/javascript" src="countryCodeMap.js">
         </script>
+        <script type="text/javascript" src="line.js">
+        </script>
         <script type="text/javascript" src="map.js">
         </script>
         <script type="text/javascript" src="forest.js">
@@ -35,16 +37,16 @@
             <div id="yearSlider">
             </div>
         </div>
-            <script type="application/javascript">
-                $(yearSlider).slider({
-                    min: 1990,//us_stats.minYear,
-                    max: 2010,//us_stats.maxYear,
-                    value: 2010,//us_stats.maxYear,
-                    slide: function(e, ui){
-                        //year = ui.value;
-                        //vis.render();
-                    }
-                });
-            </script>
+        <script type="application/javascript">
+            $(yearSlider).slider({
+                min: 1990,//us_stats.minYear,
+                max: 2010,//us_stats.maxYear,
+                value: 2010,//us_stats.maxYear,
+                slide: function(e, ui){
+                    //year = ui.value;
+                    //vis.render();
+                }
+            });
+        </script>
     </body>
 </html>
