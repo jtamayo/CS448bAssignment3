@@ -6,7 +6,7 @@ function line() {
 //	var data = pv.range(1990, 2010, .1).map(function(x) {
 //    return {x: x, y: Math.sin(x) + Math.random() * .5 + 2};
 //  });
-  var data = afghanistan['AFG'];
+  var data = forest['AFG'];
 	
 	var w = 860,
     h = 180,
@@ -42,10 +42,8 @@ vis.add(pv.Rule)
 
 vis.add(pv.Line)
     .data(data)
-    .left(function(d) { return x(d.year); 
-	})
-    .bottom(function(d) { return y(d.value);
-	})
+    .left(function(d) { return x(d.year); })
+    .bottom(function(d) { return y(d.value); })
     .lineWidth(3);
 
 vis.render();
@@ -64,7 +62,14 @@ function map() {
 	
 	/* Precompute the country's population density and color. */
 	countries.forEach(function(c) {
-		c.color = fill(afghanistan[countryCodeMap.twoToThree[c.code]][1].value);
+		var country = countryCodeMap.twoToThree[c.code]
+		var y = forest[country]
+		try {
+		c.color = fill(y[0].value);
+	
+} catch (e) {
+	console.log(country);	
+}
 //	  c.color = stats[c.code].area
 //	      ? fill(stats[c.code].pop / stats[c.code].area)
 //	      : "#ccc"; // unknown
@@ -89,7 +94,8 @@ function map() {
 	    .top(geo.y)
 	    .title(function(d, b, c) { return c.name;})
 	    .fillStyle(function(d, b, c) {return c.color;})
-	    .strokeStyle(function() { return this.fillStyle().darker();})
+	    .strokeStyle(function() { return this.fillStyle();})
+//	    .strokeStyle(function() { return this.fillStyle().darker();})
 	    .lineWidth(1)
 	    .antialias(false);
 	
