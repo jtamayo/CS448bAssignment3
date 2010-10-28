@@ -63,7 +63,7 @@ var w = 820,
         		function(country) {return Math.floor(country[dim])-fudge;},
         		function(country) {return Math.ceil(country[dim]) +fudge;}
         	);
-			var low = pv.color("#FFF5EB");
+			var low = pv.color("#F16913");
 			var high = pv.color("#8C2D04");
 			return units[dim].invert ? domain.range(low, high) : domain.range(high, low);
 		});
@@ -122,25 +122,13 @@ var line = change.add(pv.Panel)
     .left(function(t, d) {return x(t);})
     .bottom(function(t, d) {return y[t](d[t]);})
     .strokeStyle(function(t, d) {return c[active](d[active]);})
-    .lineWidth(5)
-	.event("click", function(d) {
+    .lineWidth(2)
+	.event("mouseover", function(d) {
+		var x = this;
 		console.log("It works");
   	})
 	;
 	
-	/* Transparent overlay */
-var line2 = change.add(pv.Panel)
-    .data(cars)
-    .visible(function(d) { return dims.every(function(t) { 
-		return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);
-	});})
-  .add(pv.Line)
-    .data(dims)
-    .left(function(t, d) {return x(t);})
-    .bottom(function(t, d) {return y[t](d[t]);})
-    .strokeStyle(pv.color("rgba(0,0,0,0)"))
-    .lineWidth(10)
-	;
 // Updater for slider and resizer.
 function update(d){
     var t = d.dim;
