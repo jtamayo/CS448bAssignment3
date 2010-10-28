@@ -1,6 +1,6 @@
 var year = 2005;
 var startYear = 1990;
-var endYear = 2010;
+var endYear = 2007;
 
 function map() {	
 	/*
