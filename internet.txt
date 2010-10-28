@@ -1,0 +1,198 @@
+Country	2008
+Afghanistan	1.7228844
+Albania	23.8603426
+Algeria	11.9278189
+Andorra	70.5460533
+Angola	3.0520511
+Antigua and Barbuda	75.0299978
+Argentina	28.1126235
+Armenia	6.2071693
+Aruba	22.7585226
+Australia	70.7826687
+Austria	71.2093762
+Azerbaijan	28.162694
+Bahamas, The	31.5398557
+Bahrain	51.9464662
+Bangladesh	0.3474997
+Barbados	73.6668456
+Belarus	32.0932563
+Belgium	68.0982082
+Belize	10.555728
+Benin	1.8471301
+Bermuda	79.4392523
+Bhutan	6.5522307
+Bolivia	10.8313159
+Bosnia and Herzegovina	34.6554557
+Botswana	6.2463498
+Brazil	37.5199932
+Brunei Darussalam	55.3176303
+Bulgaria	34.7228499
+Burkina Faso	0.919004
+Burundi	0.8050279
+Cambodia	0.5081717
+Cameroon	3.7981212
+Canada	75.3075524
+Cape Verde	20.6147528
+Cayman Islands	42.397842
+Central African Republic	0.4378624
+Chad	1.191167
+Chile	32.4699987
+China	22.4964236
+Colombia	38.4999979
+Comoros	3.5738075
+Congo, Rep.	4.2875099
+Costa Rica	32.307132
+Cote d'Ivoire	3.2052369
+Croatia	50.4688543
+Cuba	12.9409576
+Cyprus	38.7772282
+Czech Republic	57.8237885
+Denmark	83.3443552
+Djibouti	2.2608317
+Dominica	37.5716842
+Dominican Republic	21.5759505
+Ecuador	28.7951777
+Egypt, Arab Rep.	16.648431
+El Salvador	10.5968298
+Equatorial Guinea	1.8203966
+Eritrea	4.0593666
+Estonia	66.2434222
+Ethiopia	0.4460224
+Fiji	12.2031264
+Finland	82.4839618
+France	67.9466424
+Gabon	6.2147872
+Gambia, The	6.8786893
+Georgia	23.7751889
+Germany	75.4756093
+Ghana	4.2696378
+Greece	43.1126544
+Greenland	63.9113762
+Grenada	23.1798953
+Guam	48.4187022
+Guatemala	14.3210702
+Guinea	0.9152801
+Guinea-Bissau	2.3548887
+Guyana	26.8522485
+Haiti	10.1251448
+Honduras	13.0895972
+Hong Kong SAR, China	67.0440116
+Hungary	58.5080594
+Iceland	90.0010712
+India	4.5396133
+Indonesia	7.9174794
+Iran, Islamic Rep. of	31.9638351
+Iraq	0.9768438
+Ireland	62.7010795
+Israel	47.8874781
+Italy	41.7693997
+Jamaica	57.3087228
+Japan	75.157389
+Jordan	27.4475224
+Kazakhstan	10.8906469
+Kenya	8.6663871
+Kiribati	2.0712939
+Korea, D.P.R. of	0
+Korea, Rep. of	75.7853807
+Kuwait	36.6563427
+Kyrgyz Republic	16.1048902
+Lao P.D.R.	8.4999358
+Latvia	60.4387991
+Lebanon	22.5334891
+Lesotho	3.576606
+Liberia	0.5272315
+Libya	5.131724
+Liechtenstein	65.9575065
+Lithuania	54.391824
+Luxembourg	79.2053617
+Macao SAR, China	49.2228866
+Macedonia, FYR	41.5383116
+Madagascar	1.6540264
+Malawi	2.1291669
+Malaysia	55.7999998
+Maldives	23.5185738
+Mali	1.5740922
+Malta	48.2582838
+Marshall Islands	3.6871193
+Mauritania	1.866227
+Mauritius	22.2247792
+Mexico	22.1601297
+Micronesia, Fed. States of	14.490916
+Moldova	23.3942658
+Mongolia	12.4942451
+Montenegro	47.2407543
+Morocco	33.0400015
+Mozambique	1.5637194
+Myanmar	0.2196295
+Namibia	5.3290038
+Nepal	1.732066
+Netherlands, The	86.9813573
+New Caledonia	34.4541051
+New Zealand	71.3767013
+Nicaragua	3.2643266
+Niger	0.5440579
+Nigeria	15.859958
+Norway	82.5219181
+Oman	19.9974079
+Pakistan	11.1370985
+Panama	27.493547
+Papua New Guinea	1.8245894
+Paraguay	14.3352483
+Peru	24.7197079
+Philippines	6.2181485
+Poland	48.9934482
+Portugal	42.1348709
+Puerto Rico	25.2873081
+Qatar	34.0395765
+Romania	28.79464
+Russian Federation	31.8774216
+Rwanda	3.0861994
+Samoa	5.0316153
+San Marino	54.7839258
+Sao Tome and Principe	15.4831621
+Saudi Arabia	31.2885839
+Senegal	8.3530004
+Serbia	44.8966092
+Seychelles	38.9852339
+Sierra Leone	0.2500066
+Singapore	69.6367318
+Slovak Republic	65.9647995
+Slovenia	55.6901049
+Solomon Islands	1.9582041
+Somalia	1.1426874
+South Africa	8.5811451
+Spain	55.4046654
+Sri Lanka	5.7723864
+St. Kitts and Nevis	32.5269774
+St. Lucia	58.7528324
+St. Vincent and the Grenadines	60.4855339
+Sudan	10.157754
+Suriname	9.7064008
+Swaziland	6.8502887
+Sweden	87.6986805
+Switzerland	75.9289588
+Syrian Arab Republic	17.3215577
+Tajikistan	8.776956
+Tanzania	1.2239924
+Thailand	23.8920673
+Togo	5.4191269
+Tonga	8.1107699
+Trinidad and Tobago	17.024302
+Tunisia	27.1112919
+Turkey	34.3713784
+Turkmenistan	1.4870278
+Uganda	7.8971812
+Ukraine	10.5390828
+United Arab Emirates	65.1514459
+United Kingdom	76.0238324
+United States	75.7716632
+Uruguay	40.1913348
+Uzbekistan	9.0394198
+Vanuatu	7.2691199
+Venezuela, R.B. de	25.6573295
+Vietnam	24.1663511
+Virgin Islands (U.S.)	27.3124545
+West Bank and Gaza	9.0417084
+Yemen, Rep. of	1.6144878
+Zambia	5.5466549
+Zimbabwe	11.4018599

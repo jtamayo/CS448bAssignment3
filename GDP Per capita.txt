@@ -1,0 +1,187 @@
+Country	2008
+Afghanistan	366.0831023
+Albania	4075.316508
+Algeria	4974.461074
+Andorra	44290.80207
+Angola	4713.745234
+Antigua and Barbuda	13889.63703
+Argentina	8235.707474
+Armenia	3872.677209
+Australia	48498.73064
+Austria	49525.0598
+Azerbaijan	5329.219113
+Bahrain	28240.47988
+Bangladesh	497.1961772
+Barbados	14425.77086
+Belarus	6276.66818
+Belgium	47148.85186
+Belize	4218.2552
+Benin	771.4937157
+Bermuda	94908.00623
+Bhutan	1812.532796
+Bolivia	1720.041698
+Bosnia and Herzegovina	4903.28885
+Botswana	6988.105733
+Brazil	8535.688263
+Bulgaria	6546.308483
+Burkina Faso	528.1530964
+Burundi	144.7688135
+Cambodia	710.3650952
+Cameroon	1217.833051
+Canada	45002.84624
+Cape Verde	3071.044618
+Central African Republic	458.1699615
+Chad	766.0836671
+Chile	10167.26644
+China	3421.865764
+Colombia	5404.862653
+Comoros	823.7030558
+Congo, Dem. Rep. of	181.5892951
+Congo, Rep.	2966.162427
+Costa Rica	6565.496961
+Cote d'Ivoire	1137.079524
+Croatia	15636.55757
+Cyprus	31409.84391
+Czech Republic	20728.84698
+Denmark	62035.77546
+Djibouti	1156.950494
+Dominica	5115.517634
+Dominican Republic	4575.701814
+Ecuador	4056.387589
+Egypt, Arab Rep.	1997.10327
+El Salvador	3605.302328
+Equatorial Guinea	28102.52563
+Eritrea	335.69373
+Estonia	17541.3036
+Ethiopia	320.878634
+Faeroe Islands	49737.52341
+Fiji	4232.169273
+Finland	50775.43841
+France	44471.49614
+Gabon	10036.65292
+Gambia, The	495.0715626
+Georgia	2917.929596
+Germany	44524.51692
+Ghana	713.1772961
+Greece	31173.56789
+Greenland	30883.03497
+Grenada	6553.042138
+Guatemala	2848.367812
+Guinea	386.322183
+Guinea-Bissau	291.42758
+Guyana	1518.44323
+Haiti	648.7896386
+Honduras	1919.135449
+Hong Kong SAR, China	30863.25745
+Hungary	15408.00578
+Iceland	52932.10336
+India	1065.131337
+Indonesia	2245.50219
+Iran, Islamic Rep. of	4699.896841
+Iraq	2817.332626
+Ireland	60178.21643
+Israel	27651.79637
+Italy	38384.51129
+Jamaica	5438.476142
+Japan	38267.91501
+Jordan	3650.503339
+Kazakhstan	8513.562065
+Kenya	783.0389938
+Kiribati	1387.037053
+Korea, Rep. of	19161.89448
+Kosovo	3155.605568
+Kuwait	54260.0826
+Kyrgyz Republic	973.8641855
+Lao P.D.R.	882.2295262
+Latvia	14937.06513
+Lebanon	7121.853482
+Lesotho	792.5686208
+Liberia	222.098191
+Libya	14802.19617
+Liechtenstein	141114.2552
+Lithuania	14034.31465
+Luxembourg	117954.6797
+Macedonia, FYR	4662.518309
+Madagascar	495.1433378
+Malawi	287.7891867
+Malaysia	8186.792755
+Maldives	4131.55024
+Mali	686.496969
+Marshall Islands	2547.464235
+Mauritania	1101.189835
+Mauritius	7337.102773
+Mexico	10248.66329
+Micronesia, Fed. States of	2334.388343
+Moldova	1695.972811
+Monaco	211500.5781
+Mongolia	1990.586549
+Montenegro	7262.384126
+Morocco	2768.735988
+Mozambique	440.8473413
+Namibia	4143.514865
+Nepal	437.8720822
+Netherlands, The	53075.91117
+New Zealand	27045.14729
+Nicaragua	1123.168915
+Niger	364.1282367
+Nigeria	1369.716452
+Norway	94567.91312
+Oman	21648.57274
+Pakistan	994.3788857
+Palau	8910.81028
+Panama	6821.184863
+Papua New Guinea	1217.969769
+Paraguay	2704.961125
+Peru	4477.246171
+Philippines	1853.836919
+Poland	13857.39867
+Portugal	22955.1298
+Romania	9299.738685
+Russian Federation	11747.79026
+Rwanda	458.4919739
+Samoa	3236.442237
+San Marino	61222.95703
+Sao Tome and Principe	1083.949293
+Saudi Arabia	19151.58356
+Senegal	1086.98939
+Serbia	6646.957944
+Seychelles	10647.40136
+Sierra Leone	351.5971099
+Singapore	39949.50553
+Slovak Republic	18211.63745
+Slovenia	26910.66913
+Solomon Islands	1264.601657
+South Africa	5665.788549
+Spain	35000.34744
+Sri Lanka	2019.985499
+St. Kitts and Nevis	11590.59686
+St. Lucia	5793.464485
+St. Vincent and the Grenadines	5331.178663
+Sudan	1403.517893
+Suriname	5888.090549
+Swaziland	2429.236244
+Sweden	52884.45939
+Switzerland	65413.35687
+Syrian Arab Republic	2648.819844
+Tajikistan	750.8352151
+Tanzania	502.9999717
+Thailand	4043.183455
+Timor-Leste	453.3186496
+Togo	448.788976
+Tonga	3348.890855
+Trinidad and Tobago	19475.41148
+Tunisia	3954.842056
+Turkey	9880.874072
+Turkmenistan	3373.994746
+Uganda	456.1543804
+Ukraine	3891.037823
+United Arab Emirates	58272.38592
+United Kingdom	43360.77046
+United States	47209.52772
+Uruguay	9351.293296
+Uzbekistan	1022.106826
+Vanuatu	2648.0272
+Venezuela, R.B. de	11150.12702
+Vietnam	1051.434302
+Yemen, Rep. of	1174.53394
+Zambia	1165.168762
