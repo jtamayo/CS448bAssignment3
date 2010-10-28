@@ -57,9 +57,9 @@ var w = 820,
     c = pv.dict(dims, 
 		function(t) {
 			return pv.Scale.linear(
-				cars.filter(function(d) !isNaN(d[t])),
-        		function(d) Math.floor(d[t])-fudge,
-        		function(d) Math.ceil(d[t]) +fudge
+				cars.filter(function(d) {return !isNaN(d[t]);}),
+        		function(d) {return Math.floor(d[t])-fudge;},
+        		function(d) {return Math.ceil(d[t]) +fudge;}
         	).range("steelblue", "brown");
 		});
 
@@ -80,11 +80,11 @@ var vis = new pv.Panel()
 // The parallel coordinates display.
 vis.add(pv.Panel)
     .data(cars)
-    .visible(function(d) dims.every(function(t) (d[t] >= filter[t].min) && (d[t] <= filter[t].max)))
+    .visible(function(d) {return dims.every(function(t) {return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);});})
   .add(pv.Line)
     .data(dims)
-    .left(function(t, d) x(t))
-    .bottom(function(t, d) y[t](d[t]))
+    .left(function(t, d) {return x(t);})
+    .bottom(function(t, d) {return y[t](d[t]);})
     .strokeStyle("#ddd")
     .lineWidth(1)
     .antialias(false);
@@ -98,15 +98,14 @@ rule = vis.add(pv.Rule)
 rule.anchor("top").add(pv.Label)
     .top(-12)
     .font("bold 10px sans-serif")
-    .text(function(d) units[d].name);
+    .text(function(d) {return units[d].name;});
 
 // The parallel coordinates display.
 var change = vis.add(pv.Panel);
 
 var line = change.add(pv.Panel)
     .data(cars)
-    .visible(function(d) dims.every(function(t)
-        (d[t] >= filter[t].min) && (d[t] <= filter[t].max)))
+    .visible(function(d) { return dims.every(function(t) { return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);});})
   .add(pv.Line)
     .data(dims)
     .left(function(t, d) x(t))
