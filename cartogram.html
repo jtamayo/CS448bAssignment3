@@ -44,12 +44,13 @@
 
     </style>
   </head>
-  <body><div id="center"><div id="fig">
-    <div id="container">
-      <b id="yearLabel">Year:</b
-      ><div id="yearSlider"></div
-      ><img id="play" src="play.png" alt="Play" onclick="playClick()">
-    </div>
+  <body><div id="center">
+  	<div id="fig">
+	    <div id="container">
+	      <b id="yearLabel">Year:</b>
+		  <div id="yearSlider"></div>
+		  <img id="play" src="play.png" alt="Play" onclick="playClick()">
+	    </div>
     <script type="text/javascript">
 
 $(yearSlider).slider({
@@ -134,8 +135,8 @@ us_lowres.forEach(function(s) {
 });
 
 function updateYear() {
-  nodes.forEach(function(n) { return n.r = numToRad(us_stats[n.code].pop[us_stats.yearIdx(year)]*us_stats[n.code].obese[us_stats.yearIdx(year)]/100); })
-  links.forEach(function(l) { return l.length = (l.sourceNode.r + l.targetNode.r + 2); })
+  nodes.forEach(function(n) { n.r = numToRad(us_stats[n.code].pop[us_stats.yearIdx(year)]*us_stats[n.code].obese[us_stats.yearIdx(year)]/100); })
+  links.forEach(function(l) { l.length = (l.sourceNode.r + l.targetNode.r + 2); })
   i = 0;
   var stepSome = setInterval(function() {
     if (i++ > 10) clearInterval(stepSome);
