@@ -29,10 +29,15 @@ large {
   <body><div id="center"><div id="fig">
     <script type="text/javascript">
 
+/*
+ * So, the trick is that some of the scales are inverted, and the filters should
+ * know about this.
+ */
+
 // The units and dimensions to visualize, in order.
 var units = {
-  gdp: {name: "GDP Per Capita", unit: " current US$"},
-  net: {name: "Internet Users", unit: " per 100 people"},
+  gdp: {name: "GDP Per Capita", unit: " current US$", invert: false},
+  net: {name: "Internet Users", unit: " per 100 people", invert: false},
   imr: {name: "Infant Mortality Rate", unit: " per 1000 live births", invert: true},
   death: {name: "Death Rate, Crude", unit: " per 1000 people", invert: true}
 }
@@ -45,18 +50,18 @@ var w = 820,
     fudge = 0.5,
     x = pv.Scale.ordinal(dims).splitFlush(0, w),
     y = pv.dict(dims, 
-		function(t) { 
-			return pv.Scale.linear(
-				cars.filter(function(d) {return !isNaN(d[t]);}),
-        		function(d) {return Math.floor(d[t])-fudge;},
-        		function(d) {return Math.ceil(d[t]) +fudge;}
-        	).range(0, h); }),
+		function(dim) { 
+				return pv.Scale.linear(
+					cars,
+	        		function(country) {return Math.floor(country[dim])-fudge;},
+	        		function(country) {return Math.ceil(country[dim]) +fudge;}
+	        	).range(0, h); }),
     c = pv.dict(dims, 
-		function(t) {
+		function(dim) {
 			return pv.Scale.linear(
-				cars.filter(function(d) {return !isNaN(d[t]);}),
-        		function(d) {return Math.floor(d[t])-fudge;},
-        		function(d) {return Math.ceil(d[t]) +fudge;}
+				cars,
+        		function(country) {return Math.floor(country[dim])-fudge;},
+        		function(country) {return Math.ceil(country[dim]) +fudge;}
         	).range("steelblue", "brown");
 		});
 
