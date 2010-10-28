@@ -1,4 +1,4 @@
-var parallelData = [
+var cars = [
 {name:'Afghanistan', gdp:366.0831023, net: 1.7228844, imr: 135.2, death: 19.572},
 {name:'Albania', gdp:4075.316508, net: 23.8603426, imr: 14.3, death: 6.204},
 {name:'Algeria', gdp:4974.461074, net: 11.9278189, imr: 30, death: 4.924},
@@ -36,7 +36,7 @@ var parallelData = [
 {name:'Comoros', gdp:823.7030558, net: 3.5738075, imr: 75.5, death: 6.685},
 {name:'Congo, Rep.', gdp:2966.162427, net: 4.2875099, imr: 79.7, death: 12.863},
 {name:'Costa Rica', gdp:6565.496961, net: 32.307132, imr: 9.8, death: 4.106},
-{name:'Cote d'Ivoire', gdp:1137.079524, net: 3.2052369, imr: 84.6, death: 10.84},
+{name:'Cote d\'Ivoire', gdp:1137.079524, net: 3.2052369, imr: 84.6, death: 10.84},
 {name:'Croatia', gdp:15636.55757, net: 50.4688543, imr: 4.7, death: 11.8},
 {name:'Cyprus', gdp:31409.84391, net: 38.7772282, imr: 3.5, death: 7.154},
 {name:'Czech Republic', gdp:20728.84698, net: 57.8237885, imr: 3, death: 10.068},

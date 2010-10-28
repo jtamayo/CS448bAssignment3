@@ -4,7 +4,7 @@
     <title>Parallel Coordinates</title>
     <link type="text/css" rel="stylesheet" href="ex.css?3.2"/>
     <script type="text/javascript" src="protovis-r3.2.js"></script>
-    <script type="text/javascript" src="cars.js"></script>
+    <script type="text/javascript" src="paralleldata.js"></script>
     <style type="text/css">
 
 #fig {
@@ -31,13 +31,10 @@ large {
 
 // The units and dimensions to visualize, in order.
 var units = {
-  cyl: {name: "cylinders", unit: ""},
-  dsp: {name: "displacement", unit: " sq in"},
-  lbs: {name: "weight", unit: " lbs"},
-  hp: {name: "horsepower", unit: " hp"},
-  acc: {name: "acceleration (0-60 mph)", unit: " sec"},
-  mpg: {name: "mileage", unit: " mpg"},
-  year: {name: "year", unit: ""}
+  gdp: {name: "GDP Per Capita", unit: " current US$"},
+  net: {name: "Internet Users", unit: " per 100 people"},
+  imr: {name: "Infant Mortality Rate", unit: " per 1000 live births", invert: true},
+  death: {name: "Death Rate, Crude", unit: " per 1000 people", invert: true}
 }
 
 var dims = pv.keys(units);
@@ -66,7 +63,7 @@ var w = 820,
 /* Interaction state. */
 var filter = pv.dict(dims, function(t) {
     return {min: y[t].domain()[0], max: y[t].domain()[1]};
-  }), active = "mpg";
+  }), active = "gdp";
 
 /* The root panel. */
 var vis = new pv.Panel()
