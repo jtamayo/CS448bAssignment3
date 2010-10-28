@@ -109,9 +109,9 @@ var line = change.add(pv.Panel)
         (d[t] >= filter[t].min) && (d[t] <= filter[t].max)))
   .add(pv.Line)
     .data(dims)
-    .left(function(t, d) x(t))
-    .bottom(function(t, d) y[t](d[t]))
-    .strokeStyle(function(t, d) c[active](d[active]))
+    .left(function(t, d) {return x(t);})
+    .bottom(function(t, d) {return y[t](d[t]);})
+    .strokeStyle(function(t, d) {return c[active](d[active]);})
     .lineWidth(1);
 
 // Updater for slider and resizer.
@@ -140,7 +140,9 @@ function selectAll(d) {
 /* Handle select and drag */
 var handle = change.add(pv.Panel)
     .data(dims.map(function(dim) { return {y:0, dy:h, dim:dim}; }))
-    .left(function(t) x(t.dim) - 30)
+    .left(function(t){
+		return x(t.dim) - 30;
+	})
     .width(60)
     .fillStyle("rgba(0,0,0,.001)")
     .cursor("crosshair")
@@ -149,12 +151,14 @@ var handle = change.add(pv.Panel)
     .event("selectend", selectAll)
   .add(pv.Bar)
     .left(25)
-    .top(function(d) d.y)
+    .top(function(d) { return d.y; })
     .width(10)
-    .height(function(d) d.dy)
-    .fillStyle(function(t) t.dim == active
+    .height(function(d) {return d.dy; })
+    .fillStyle(function(t) {
+		return (
+		t.dim == active
         ? c[t.dim]((filter[t.dim].max + filter[t.dim].min) / 2)
-        : "hsla(0,0,50%,.5)")
+        : "hsla(0,0,50%,.5)");})
     .strokeStyle("white")
     .cursor("move")
     .event("mousedown", pv.Behavior.drag())
@@ -163,11 +167,15 @@ var handle = change.add(pv.Panel)
 
 handle.anchor("bottom").add(pv.Label)
     .textBaseline("top")
-    .text(function(d) filter[d.dim].min.toFixed(0) + units[d.dim].unit);
+    .text(function(d){
+		return filter[d.dim].min.toFixed(0) + units[d.dim].unit;
+	}); 
 
 handle.anchor("top").add(pv.Label)
     .textBaseline("bottom")
-    .text(function(d) filter[d.dim].max.toFixed(0) + units[d.dim].unit);
+    .text(function(d){
+		return filter[d.dim].max.toFixed(0) + units[d.dim].unit;
+	});
 
 vis.render();
 
