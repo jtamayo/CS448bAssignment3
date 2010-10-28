@@ -50,25 +50,31 @@ var w = 820,
     fudge = 0.5,
     x = pv.Scale.ordinal(dims).splitFlush(0, w),
     y = pv.dict(dims, 
-		function(dim) { 
-				return pv.Scale.linear(
-					cars,
+		function(dim) {
+				var domain = pv.Scale.linear(cars,
 	        		function(country) {return Math.floor(country[dim])-fudge;},
 	        		function(country) {return Math.ceil(country[dim]) +fudge;}
-	        	).range(0, h); }),
+	        	);
+				return units[dim].invert ? domain.range(h, 0) : domain.range(0, h); 
+		}),
     c = pv.dict(dims, 
 		function(dim) {
-			return pv.Scale.linear(
-				cars,
+			var domain = pv.Scale.linear(cars,
         		function(country) {return Math.floor(country[dim])-fudge;},
         		function(country) {return Math.ceil(country[dim]) +fudge;}
-        	).range("steelblue", "brown");
+        	);
+			var low = pv.color("#FFF5EB");
+			var high = pv.color("#8C2D04");
+			return units[dim].invert ? domain.range(low, high) : domain.range(high, low);
 		});
 
-/* Interaction state. */
-var filter = pv.dict(dims, function(t) {
-    return {min: y[t].domain()[0], max: y[t].domain()[1]};
-  }), active = "gdp";
+/* Interaction state. 
+ * filter has a function for each dimension that returns the min and max value currently selected
+ */
+var filter = pv.dict(dims, function(dim) {
+    return {min: y[dim].domain()[0], max: y[dim].domain()[1]};
+  }), 
+  active = "gdp";
 
 /* The root panel. */
 var vis = new pv.Panel()
@@ -89,7 +95,8 @@ vis.add(pv.Panel)
     .bottom(function(t, d) {return y[t](d[t]);})
     .strokeStyle("#ddd")
     .lineWidth(1)
-    .antialias(false);
+    .antialias(false)
+	;
 
 // Rule per dimension.
 rule = vis.add(pv.Rule)
@@ -100,37 +107,66 @@ rule = vis.add(pv.Rule)
 rule.anchor("top").add(pv.Label)
     .top(-12)
     .font("bold 10px sans-serif")
-    .text(function(d) {return units[d].name;});
+    .text(function(dim) {return units[dim].name;});
 
 // The parallel coordinates display.
 var change = vis.add(pv.Panel);
 
 var line = change.add(pv.Panel)
     .data(cars)
-    .visible(function(d) { return dims.every(function(t) { return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);});})
+    .visible(function(d) { return dims.every(function(t) { 
+		return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);
+	});})
   .add(pv.Line)
     .data(dims)
     .left(function(t, d) {return x(t);})
     .bottom(function(t, d) {return y[t](d[t]);})
     .strokeStyle(function(t, d) {return c[active](d[active]);})
-    .lineWidth(1);
-
+    .lineWidth(5)
+	.event("click", function(d) {
+		console.log("It works");
+  	})
+	;
+	
+	/* Transparent overlay */
+var line2 = change.add(pv.Panel)
+    .data(cars)
+    .visible(function(d) { return dims.every(function(t) { 
+		return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);
+	});})
+  .add(pv.Line)
+    .data(dims)
+    .left(function(t, d) {return x(t);})
+    .bottom(function(t, d) {return y[t](d[t]);})
+    .strokeStyle(pv.color("rgba(0,0,0,0)"))
+    .lineWidth(10)
+	;
 // Updater for slider and resizer.
-function update(d) {
-  var t = d.dim;
-  filter[t].min = Math.max(y[t].domain()[0], y[t].invert(h - d.y - d.dy));
-  filter[t].max = Math.min(y[t].domain()[1], y[t].invert(h - d.y));
-  active = t;
-  change.render();
-  return false;
+function update(d){
+    var t = d.dim;
+	if (units[t].invert) {
+	  filter[t].max = Math.max(y[t].domain()[0], y[t].invert(h - d.y - d.dy));
+	  filter[t].min = Math.min(y[t].domain()[1], y[t].invert(h - d.y));
+	} else {
+	  filter[t].min = Math.max(y[t].domain()[0], y[t].invert(h - d.y - d.dy));
+	  filter[t].max = Math.min(y[t].domain()[1], y[t].invert(h - d.y));
+	}
+    active = t;
+    change.render();
+    return false;
 }
 
 // Updater for slider and resizer.
 function selectAll(d) {
   if (d.dy < 3) {
     var t = d.dim;
-    filter[t].min = Math.max(y[t].domain()[0], y[t].invert(0));
-    filter[t].max = Math.min(y[t].domain()[1], y[t].invert(h));
+	if (units[t].invert) {
+	    filter[t].max = Math.max(y[t].domain()[0], y[t].invert(0));
+	    filter[t].min = Math.min(y[t].domain()[1], y[t].invert(h));
+	} else {
+	    filter[t].min = Math.max(y[t].domain()[0], y[t].invert(0));
+	    filter[t].max = Math.min(y[t].domain()[1], y[t].invert(h));
+	}
     d.y = 0; d.dy = h;
     active = t;
     change.render();
