@@ -2,35 +2,20 @@ var year = 2005;
 var startYear = 1990;
 var endYear = 2007;
 
-function map() {	
-	/*
-	 * A diverging color scale, using previously-computed quantiles of population
-	 * densities; in the future, we might use a quantile scale here to do this
-	 * automatically. Map colors based on www.ColorBrewer.org, by Cynthia A. Brewer,
-	 * Penn State.
-	 */
+function map() {
 	var fill = pv.Scale.linear()
 	    .domain(0, 100)
 	    .range("#91bfdb", "#ffffbf", "#fc8d59");
 	
-	/* Precompute the country's population density and color. */
 	countries.forEach(function(c) {
-		var country = countryCodeMap.twoToThree[c.code]
-        var y = forest[country]
-        try {
-            c.color = fill(y[0].value);
-        } 
-        catch (e) {
-            console.log(country);
-        }
-//	  c.color = stats[c.code].area
-//	      ? fill(stats[c.code].pop / stats[c.code].area)
-//	      : "#ccc"; // unknown
+		var country = countryCodeMap.twoToThree[c.code];
+        var y = forest[country];
+        c.color = y ? fill(y[0].value) : "#CCC";
 	});
 	
 	var w = 860,
 	    h = 3 / 5 * w,
-	    geo = pv.Geo.scale("identity").range(w, h);
+	    geo = pv.Geo.scale("hammer").range(w, h);
 	
 	var vis = new pv.Panel()
 	    .width(w)
@@ -47,14 +32,13 @@ function map() {
 	    .top(geo.y)
 	    .title(function(d, b, c) { return c.name;})
 	    .fillStyle(function(d, b, c) {return c.color;})
-	    .strokeStyle(function() { return this.fillStyle();})
-//	    .strokeStyle(function() { return this.fillStyle().darker();})
+	    .strokeStyle(function() { return this.fillStyle() ? this.fillStyle().darker() : this.fillStyle();})
 	    .lineWidth(1)
 	    .antialias(false);
 	
 	/* Latitude ticks. */
 	vis.add(pv.Panel)
-	    .data(geo.ticks.lat())
+	    .data(geo.ticks.lat(500))
 	  .add(pv.Line)
 	    .data(function(b) { return b;})
 	    .left(geo.x)
@@ -66,7 +50,7 @@ function map() {
 	
 	/* Longitude ticks. */
 	vis.add(pv.Panel)
-	    .data(geo.ticks.lng())
+	    .data(geo.ticks.lng(500))
 	  .add(pv.Line)
 	    .data(function(b) { return b;})
 	    .left(geo.x)

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+            $('document').ready(function(){
+//                $.get('forest-area-percentage-of-land-area_en.xml', function(data){
+                $.get('mortality-rate-infant-per-1000-live-births_en.xml', function(data){
+      		  	var dataSet = $(data).find('data');
+      			var i;
+				var result = {};
+				var country;
+				var year;
+				var value;
+      			for (i = 0; i < dataSet.length; i++) {
+					country = $(dataSet[i]).find('country').attr('id');
+					year = $(dataSet[i]).find('year').text();
+					value = $(dataSet[i]).find('value').text();
+					if (result[country] === undefined) {
+						result[country] = [];
+					}
+					result[country].push({'year': year, 'value': value});
+      			}
+				$("#result").append(JSON.stringify(result));
+                });
+            });
+          
+    </script>
+    <div id="result"></div>
+  </body>
+</html>
