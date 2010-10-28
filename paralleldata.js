@@ -36,7 +36,7 @@ var cars = [
 {name:'Comoros', gdp:823.7030558, net: 3.5738075, imr: 75.5, death: 6.685, cont: 2, code: 'COM'},
 {name:'Congo, Rep.', gdp:2966.162427, net: 4.2875099, imr: 79.7, death: 12.863, cont: 1, code: 'COG'},
 {name:'Costa Rica', gdp:6565.496961, net: 32.307132, imr: 9.8, death: 4.106, cont: 8, code: 'CRI'},
-{name:'Cote d'Ivoire', gdp:1137.079524, net: 3.2052369, imr: 84.6, death: 10.84, cont: 3, code: 'CIV'},
+{name:'Cote d\'Ivoire', gdp:1137.079524, net: 3.2052369, imr: 84.6, death: 10.84, cont: 3, code: 'CIV'},
 {name:'Croatia', gdp:15636.55757, net: 50.4688543, imr: 4.7, death: 11.8, cont: 9, code: 'HRV'},
 {name:'Cyprus', gdp:31409.84391, net: 38.7772282, imr: 3.5, death: 7.154, cont: 9, code: 'CYP'},
 {name:'Czech Republic', gdp:20728.84698, net: 57.8237885, imr: 3, death: 10.068, cont: 9, code: 'CZE'},

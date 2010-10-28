@@ -27,7 +27,7 @@ large {
     </style>
   </head>
   <body>
-  	
+  	Work, please
 	<script type="text/javascript">
 	function search(form){
 		getEvent=event.keyCode;
@@ -204,6 +204,7 @@ var handle = change.add(pv.Panel)
         ? c[t.dim]((filter[t.dim].max + filter[t.dim].min) / 2)
         : "hsla(0,0,50%,.5)");})
     .strokeStyle("white")
+//    .strokeStyle("white")
     .cursor("move")
     .event("mousedown", pv.Behavior.drag())
     .event("dragstart", update)
@@ -212,13 +213,22 @@ var handle = change.add(pv.Panel)
 handle.anchor("bottom").add(pv.Label)
     .textBaseline("top")
     .text(function(d){
-		return filter[d.dim].min.toFixed(0) + units[d.dim].unit;
+		if (units[d.dim].invert) {
+			return filter[d.dim].max.toFixed(0) + units[d.dim].unit;
+		} else {
+			return filter[d.dim].min.toFixed(0) + units[d.dim].unit;
+		}
 	}); 
 
 handle.anchor("top").add(pv.Label)
     .textBaseline("bottom")
     .text(function(d){
-		return filter[d.dim].max.toFixed(0) + units[d.dim].unit;
+		if (units[d.dim].invert) {
+			return filter[d.dim].min.toFixed(0) + units[d.dim].unit;
+		} else {
+			return filter[d.dim].max.toFixed(0) + units[d.dim].unit;
+			
+		}
 	});
 
 vis.render();
