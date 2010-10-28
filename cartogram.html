@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Dorling Cartogram</title>
+    <link type="text/css" rel="stylesheet" href="ex.css?3.2"/>
     <link type="text/css" rel="stylesheet" href="ui-lightness/jquery-ui-1.8rc3.custom.css"/>
     <script type="text/javascript" src="protovis-r3.2.js"></script>
     <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
@@ -23,15 +24,15 @@
 
 #yearSlider {
   position: absolute;
-  left: 100px;
-  right: 90px;
-  margin-top: 3px;
+  left: 100;
+  right: 90;
+  margin-top: 3;
 }
 
 #yearLabel {
   position: absolute;
-  left: 0px;
-  width: 85px;
+  left: 0;
+  width: 85;
   text-align: right;
 }
 
@@ -49,7 +50,7 @@
       ><div id="yearSlider"></div
       ><img id="play" src="play.png" alt="Play" onclick="playClick()">
     </div>
-    <script type="text/javascript">
+    <script type="text/javascript+protovis">
 
 $(yearSlider).slider({
   min: us_stats.minYear,
@@ -133,8 +134,8 @@ us_lowres.forEach(function(s) {
 });
 
 function updateYear() {
-  nodes.forEach(function(n) { return n.r = numToRad(us_stats[n.code].pop[us_stats.yearIdx(year)]*us_stats[n.code].obese[us_stats.yearIdx(year)]/100); })
-  links.forEach(function(l) { return l.length = (l.sourceNode.r + l.targetNode.r + 2); })
+  nodes.forEach(function(n) n.r = numToRad(us_stats[n.code].pop[us_stats.yearIdx(year)]*us_stats[n.code].obese[us_stats.yearIdx(year)]/100));
+  links.forEach(function(l) l.length = (l.sourceNode.r + l.targetNode.r + 2));
   i = 0;
   var stepSome = setInterval(function() {
     if (i++ > 10) clearInterval(stepSome);
@@ -170,10 +171,8 @@ function stop() {
   $(play).attr("src", 'play.png');
 }
 
-var collisionConstraint = pv.Constraint.collision(function(d) { return d.r + 1; }),
-    positionConstraint = pv.Constraint.position(function(d){
-		return d.p;
-	}),
+var collisionConstraint = pv.Constraint.collision(function(d) d.r + 1),
+    positionConstraint = pv.Constraint.position(function(d) d.p),
     linkConstraint = pv.Force.spring(100).links(links);
 
 var sim = pv.simulation(nodes)
@@ -198,16 +197,16 @@ vis.add(pv.Rule)
 
 vis.add(pv.Dot)
     .data(nodes)
-    .left(function(d) { return d.x; })
-    .top(function(d) { return d.y; })
-    .radius(function(d) { return d.r; })
-    .fillStyle(function(d) { return col(us_stats[d.code].obese[us_stats.yearIdx(year)]); })
+    .left(function(d) d.x)
+    .top(function(d) d.y)
+    .radius(function(d) d.r)
+    .fillStyle(function(d) col(us_stats[d.code].obese[us_stats.yearIdx(year)]))
     .strokeStyle(null)
-    .title(function(d) { return us_stats[d.code].name + ": " + us_stats[d.code].obese[us_stats.yearIdx(year)] + "%"; })
+    .title(function(d) us_stats[d.code].name + ": " + us_stats[d.code].obese[us_stats.yearIdx(year)] + "%")
    .add(pv.Label)
-    .text(function(d) { return d.code; })
+    .text(function(d) d.code)
     .textStyle("#fee")
-    .font(function(d) { return "bold " + (4*Math.log(d.r)).toFixed(0) + "px sans-serif"; })
+    .font(function(d) "bold " + (4*Math.log(d.r)).toFixed(0) + "px sans-serif")
     .textAlign("center")
     .textBaseline("middle");
 
@@ -222,22 +221,22 @@ vis.add(pv.Dot)
     .strokeStyle("#555")
     .left(150)
     .bottom(-30)
-    .radius(function(d) { return numToRad(d.v); })
+    .radius(function(d) numToRad(d.v))
   .anchor("top").add(pv.Label)
-    .text(function(d) { return d.l; })
+    .text(function(d) d.l)
 
 // Add the color bars for the color legend
 vis.add(pv.Bar)
     .data(pv.range(14,32.1,3))
-    .bottom(function(d) { return this.index * 15 - 28; })
+    .bottom(function(d) this.index * 15 - 28)
     .height(10)
     .width(10)
     .left(5)
-     .fillStyle(function(d) { return col(14 + 3 * this.index); })
+     .fillStyle(function(d) col(14 + 3 * this.index))
     .lineWidth(null)
   .anchor("right").add(pv.Label)
     .textAlign("left")
-    .text(function(d) { return d + " - " + (d+3) + "%"; })
+    .text(function(d) d + " - " + (d+3) + "%");
 
 ease = setInterval(function() {
   if (i++ > 140) {
