@@ -26,7 +26,26 @@ large {
 
     </style>
   </head>
-  <body><div id="center"><div id="fig">
+  <body>
+  	
+	<script type="text/javascript">
+	function search(form){
+		getEvent=event.keyCode;
+	if (getEvent == "13") {
+		var countries = form.country.value;
+		alert(countries);
+	}
+	}
+	</script>
+	
+	<form name="form1" action = " " method = "get" >
+	Country
+	<input type="text" NAME="country" value = "" onkeypress = "search(this.form)">
+	</input>
+	<br><br>
+	</form>
+
+	<div id="center"><div id="fig">
     <script type="text/javascript">
 
 /*
