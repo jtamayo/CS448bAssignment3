@@ -112,7 +112,7 @@ var w = 820,
 			default:
 			console.log(country);
 		}
-		return pv.Scale.linear(0,1).range(pv.color(range[0]).rgb().alpha(0.9), pv.color(range[1]).rgb().alpha(0.5))(Math.random()); 
+		return pv.Scale.linear(0,1).range(pv.color(range[0]).rgb().alpha(0.7), pv.color(range[1]).rgb().alpha(0.7))(1); 
 	}
 
 /* Interaction state. 
@@ -176,16 +176,18 @@ var line = change.add(pv.Panel)
 		return false;
 	});})
   .add(pv.Line)
-    .data(dims)
+    .data(dims) // Data for the lines are the dimensions
     .left(function(t, d) {return x(t);})
     .bottom(function(t, d) {return y[t](d[t]);})
 //    .strokeStyle(function(t, d) {return c[active](d[active]);})
     .strokeStyle(function(t, d) {return color(d);})
-    .lineWidth(function() {return validCountries < 10 ? 4 : 2})
+    .lineWidth(function() {return validCountries < 10 ? 4 : 4})
   .add(pv.Label)
     .visible(function(){ return (validCountries < 10) && this.index == dims.length-1;})
     .textBaseline("middle")
-    .textMargin(6)
+    .textMargin(function(){
+		return Math.random() * 40 + 20;
+	})
     .text(function(dontKnow, country) {
 		return country.name;
 		});

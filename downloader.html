@@ -5,27 +5,61 @@
   </head>
   <body>
     <script type="text/javascript">
-            $('document').ready(function(){
-//                $.get('forest-area-percentage-of-land-area_en.xml', function(data){
-                $.get('internet-users_en.xml', function(data){
-      		  	var dataSet = $(data).find('data');
-      			var i;
-				var result = {};
-				var country;
-				var year;
-				var value;
-      			for (i = 0; i < dataSet.length; i++) {
-					country = $(dataSet[i]).find('country').attr('id');
-					year = $(dataSet[i]).find('year').text();
-					value = $(dataSet[i]).find('value').text();
-					if (result[country] === undefined) {
-						result[country] = [];
-					}
-					result[country].push({'year': year, 'value': value});
-      			}
-				$("#result").append(JSON.stringify(result));
-                });
-            });
+    	var result = {}
+    	function process(data, indicator) {
+			/*
+			 * I need to create the data set. 
+			 * The output is actually an array of countries, but I
+			 * need to map it somehow. I'll create a map from
+			 * country code to country object, and build the country object by hand
+			 */
+			var dataSet = $(data).find('data');
+  			var i;
+			var country;
+			var year;
+			var value;
+			var name;
+  			for (i = 0; i < dataSet.length; i++) {
+				year = $(dataSet[i]).find('year').text();
+				if (year !== '2008') continue;
+				
+				country = $(dataSet[i]).find('country').attr('id');
+				name = $(dataSet[i]).find('country').text();
+				value = $(dataSet[i]).find('value').text();
+				
+				if (result[country] === undefined) {
+					result[country] = {name: name, code: country};
+				}
+				result[country][indicator] = value;
+  			}
+        }
+		function download(url, indicator) {
+			$.ajax({
+				url: url,
+				success: function(data){
+					return process(data, indicator);
+				},
+				async: false
+			});
+		}
+        $('document').ready(function(){
+			download('internet-users_en.xml', 'net');
+			download('mortality-rate-infant-per-1000-live-births_en.xml', 'imr');
+//            $.get('internet-users_en.xml', function(){
+//				return process(data, 'net')
+//			});
+			var asarray = [];
+			var i_country, country;
+			var i_dim, dim;
+			for (var i_country in result) {
+				country = result[i_country];
+				for (i_dim in country) {
+					
+				}
+				asarray.push(result[i]);
+			}
+			$("#result").append(JSON.stringify(asarray));
+        });
           
     </script>
     <div id="result"></div>
