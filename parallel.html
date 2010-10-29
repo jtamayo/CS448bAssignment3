@@ -76,16 +76,58 @@ var w = 820,
 	        	);
 				return units[dim].invert ? domain.range(h, 0) : domain.range(0, h); 
 		}),
-    c = pv.dict(dims, 
-		function(dim) {
-			var domain = pv.Scale.linear(cars,
-        		function(country) {return Math.floor(country[dim])-fudge;},
-        		function(country) {return Math.ceil(country[dim]) +fudge;}
-        	);
-			var low = pv.color("#F16913");
-			var high = pv.color("#8C2D04");
-			return units[dim].invert ? domain.range(low, high) : domain.range(high, low);
-		});
+	color = function(country) {
+		var range;
+		switch (country.cont) {
+			case 1:
+			case 2:
+			case 3:
+			// Africa
+			range = ["#FDAE6B", "#A63603"];
+			break;
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 12:
+			// Asia
+			range = ["#BCBDDC", "#54278F"];
+			break;
+			case 8:
+			// South america
+			range = ["#A1D99B","#006D2C"]
+			break;
+			case 9:
+			case 11:
+			// Europe
+			range = ["#A63603", "#FDAE6B"]
+			break;
+			case 10:
+			// North america
+			range = ["#9ECAE1", "#08519C"];
+			default:
+			console.log(country);
+		}
+		return pv.Scale.linear(0,200).range(pv.color(range[0]), pv.color(range[1]))(country.imr); 
+	}
+//    c = pv.dict(dims, 
+//		function(dim) {
+//			//returns color for a data point for that dimension
+//			var low = pv.color("#E5F5F9");
+//			var high = pv.color("#2CA25F");
+//			return function(country){
+//				var scale = pv.Scale.linear(1, 6, 15).range(low, "#000",  high);
+//				return scale(country.cont);
+//			}
+//			return units[dim]
+//			var domain = pv.Scale.linear(cars,
+//        		function(country) {return Math.floor(country[dim])-fudge;},
+//        		function(country) {return Math.ceil(country[dim]) +fudge;}
+//        	);
+//			var low = pv.color("#F16913");
+//			var high = pv.color("#8C2D04");
+//			return units[dim].invert ? domain.range(low, high) : domain.range(high, low);
+//		});
 
 /* Interaction state. 
  * filter has a function for each dimension that returns the min and max value currently selected
@@ -140,8 +182,9 @@ var line = change.add(pv.Panel)
     .data(dims)
     .left(function(t, d) {return x(t);})
     .bottom(function(t, d) {return y[t](d[t]);})
-    .strokeStyle(function(t, d) {return c[active](d[active]);})
-    .lineWidth(2)
+//    .strokeStyle(function(t, d) {return c[active](d[active]);})
+    .strokeStyle(function(t, d) {return color(d);})
+    .lineWidth(1)
 	.event("mouseover", function(d) {
 		var x = this;
 		console.log("It works");
@@ -198,13 +241,15 @@ var handle = change.add(pv.Panel)
     .top(function(d) { return d.y; })
     .width(10)
     .height(function(d) {return d.dy; })
-    .fillStyle(function(t) {
-		return (
-		t.dim == active
-        ? c[t.dim]((filter[t.dim].max + filter[t.dim].min) / 2)
-        : "hsla(0,0,50%,.5)");})
-    .strokeStyle("white")
-//    .strokeStyle("white")
+    .fillStyle("rgba(0,0,0,0)")
+    .strokeStyle(function(t) {
+		return  "hsla(0,0,50%,.5)"
+		})
+//		(
+//		t.dim == active
+//        ? color({cont: }(filter[t.dim].max + filter[t.dim].min) / 2)
+//        ? c[t.dim]((filter[t.dim].max + filter[t.dim].min) / 2)
+//        : "hsla(0,0,50%,.5)");})
     .cursor("move")
     .event("mousedown", pv.Behavior.drag())
     .event("dragstart", update)
