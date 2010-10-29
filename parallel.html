@@ -5,6 +5,7 @@
     <link type="text/css" rel="stylesheet" href="ex.css?3.2"/>
     <script type="text/javascript" src="protovis-r3.2.js"></script>
     <script type="text/javascript" src="paralleldata.js"></script>
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
     <style type="text/css">
 
 #fig {
@@ -27,23 +28,18 @@ large {
     </style>
   </head>
   <body>
-  	Work, please
-	<script type="text/javascript">
-	function search(form){
-		getEvent=event.keyCode;
-	if (getEvent == "13") {
-		var countries = form.country.value;
-		alert(countries);
-	}
-	}
-	</script>
+  <script type="text/javascript">
+  	var searchCountries = []
+    function search(){
+        searchCountries = $('#searchBox').val().split(" ")
+		change.render();
+    }
+  </script>
 	
-	<form name="form1" action = " " method = "get" >
 	Country
-	<input type="text" NAME="country" value = "" onkeypress = "search(this.form)">
+	<input type="text" id="searchBox" NAME="country" value = "" onkeypress = "search()">
 	</input>
 	<br><br>
-	</form>
 
 	<div id="center"><div id="fig">
     <script type="text/javascript">
@@ -55,10 +51,10 @@ large {
 
 // The units and dimensions to visualize, in order.
 var units = {
-  gdp: {name: "GDP Per Capita", unit: " current US$", invert: false},
-  net: {name: "Internet Users", unit: " per 100 people", invert: false},
-  imr: {name: "Infant Mortality Rate", unit: " per 1000 live births", invert: true},
-  death: {name: "Death Rate, Crude", unit: " per 1000 people", invert: true}
+  gdp: {name: "GDP Per Capita", unit: " current US$", invert: false, log: true},
+  net: {name: "Internet Users", unit: " per 100 people", invert: false, log: false},
+  imr: {name: "Infant Mortality Rate", unit: " per 1000 live births", invert: true, log: true},
+  death: {name: "Death Rate, Crude", unit: " per 1000 people", invert: true, log: false} //TODO: remove this variable, is not interesting
 }
 
 var dims = pv.keys(units);
@@ -70,11 +66,18 @@ var w = 820,
     x = pv.Scale.ordinal(dims).splitFlush(0, w),
     y = pv.dict(dims, 
 		function(dim) {
+			if (units[dim].log) {
+				var domain = pv.Scale.log(cars,
+	        		function(country) {return Math.floor(country[dim])-fudge;},
+	        		function(country) {return Math.ceil(country[dim]) +fudge;}
+	        	);				
+			} else {
 				var domain = pv.Scale.linear(cars,
 	        		function(country) {return Math.floor(country[dim])-fudge;},
 	        		function(country) {return Math.ceil(country[dim]) +fudge;}
-	        	);
-				return units[dim].invert ? domain.range(h, 0) : domain.range(0, h); 
+	        	);				
+			}
+			return units[dim].invert ? domain.range(h, 0) : domain.range(0, h); 
 		}),
 	color = function(country) {
 		var range;
@@ -108,7 +111,7 @@ var w = 820,
 			default:
 			console.log(country);
 		}
-		return pv.Scale.linear(0,200).range(pv.color(range[0]), pv.color(range[1]))(country.imr); 
+		return pv.Scale.linear(0,200).range(pv.color(range[0]).rgb().alpha(0.5), pv.color(range[1]).rgb().alpha(0.5))(country.imr); 
 	}
 //    c = pv.dict(dims, 
 //		function(dim) {
@@ -141,12 +144,13 @@ var filter = pv.dict(dims, function(dim) {
 var vis = new pv.Panel()
     .width(w)
     .height(h)
-    .left(30)
-    .right(30)
+    .left(60)
+    .right(120)
     .top(30)
     .bottom(20);
 
 // The parallel coordinates display.
+// All of the lines are rendered in grey for the background
 vis.add(pv.Panel)
     .data(cars)
     .visible(function(d) {return dims.every(function(t) {return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);});})
@@ -171,12 +175,21 @@ rule.anchor("top").add(pv.Label)
     .text(function(dim) {return units[dim].name;});
 
 // The parallel coordinates display.
+// This guy is re-rendered every time we change the slider
 var change = vis.add(pv.Panel);
 
+// Pass in the countries we want to render
 var line = change.add(pv.Panel)
     .data(cars)
-    .visible(function(d) { return dims.every(function(t) { 
-		return (d[t] >= filter[t].min) && (d[t] <= filter[t].max);
+    .visible(function(country) { return dims.every(function(dim) { 
+	// This is the function that decides if a line is rendered or not
+		var i;
+		for (i in searchCountries) {
+			if (country.name.toLowerCase().indexOf(searchCountries[i].toLowerCase()) === 0) {
+				return (country[dim] >= filter[dim].min) && (country[dim] <= filter[dim].max);	 
+			}
+		}
+		return false;
 	});})
   .add(pv.Line)
     .data(dims)
@@ -184,11 +197,14 @@ var line = change.add(pv.Panel)
     .bottom(function(t, d) {return y[t](d[t]);})
 //    .strokeStyle(function(t, d) {return c[active](d[active]);})
     .strokeStyle(function(t, d) {return color(d);})
-    .lineWidth(1)
-	.event("mouseover", function(d) {
-		var x = this;
-		console.log("It works");
-  	})
+    .lineWidth(2)
+  .add(pv.Label)
+    .visible(function(){ return this.index == dims.length-1;})
+    .textBaseline("middle")
+    .textMargin(6)
+    .text(function(dontKnow, country) {
+		return country.name;
+		});
 	;
 	
 // Updater for slider and resizer.
@@ -241,7 +257,7 @@ var handle = change.add(pv.Panel)
     .top(function(d) { return d.y; })
     .width(10)
     .height(function(d) {return d.dy; })
-    .fillStyle("rgba(0,0,0,0)")
+    .fillStyle("rgba(0,0,0,0.1)")
     .strokeStyle(function(t) {
 		return  "hsla(0,0,50%,.5)"
 		})
